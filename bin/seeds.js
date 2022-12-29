@@ -75,7 +75,7 @@ const books = [
       rating: 8
     }
   ];
- console.log(`its working?`)
+ 
 mongoose
   .connect(MONGO_URI)
   .then(x => {

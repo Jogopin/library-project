@@ -1,7 +1,7 @@
 const Book = require("../models/Book.model");
 
 const router =require("express").Router();
-//List all books
+//READ: List all books
 router.get("/books",(req,res,next)=>{
     Book.find()
         .then(booksFromDB =>{
@@ -12,7 +12,28 @@ router.get("/books",(req,res,next)=>{
             next()
         })
 })
-//Book details
+
+//READ:Create book
+router.get("/books/create",(req,res,next)=>{
+    res.render("books/book-create")
+})
+// 
+router.post("/books/create",(req,res,next)=>{
+
+    const { title, author, description, rating } = req.body;
+
+    Book.create({ title, author, description, rating })
+        .then(bookDetails=>{
+            res.redirect("/books")
+        })
+        .catch(err=>{
+            console.log("error creating new book in DB",err)
+            next()
+        })
+
+    
+})
+//READ: Book details
 router.get("/books/:bookId",(req,res,next)=>{
     const bookId =req.params.bookId
     Book.findById(bookId)
@@ -25,8 +46,9 @@ router.get("/books/:bookId",(req,res,next)=>{
             console.log(`error with the Id`,err)
             next()
         })
-})
-
+    })
+    
+    
 
 
 module.exports = router
