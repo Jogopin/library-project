@@ -48,7 +48,29 @@ router.get("/books/:bookId",(req,res,next)=>{
         })
     })
     
-    
+    router.get("/books/:bookId/edit",(req,res,next)=>{
+        Book.findById(req.params.bookId)
+            .then((bookDetails)=>{
+                res.render("books/book-edit",bookDetails)
+            })
+            .catch((err)=>{
+                console.log("somethiing went wrong..",err)
+                next()
+            })
+    })
+    router.post("/books/:bookId/edit",(req,res,next)=>{
+
+        const { title, author, description, rating } = req.body
+
+        Book.findByIdAndUpdate(req.params.bookId,{ title, author, description, rating } )
+            .then((bookDetails)=>{
+                res.redirect(`/books/${bookDetails.id}`)
+            })
+            .catch((err)=>{
+                console.log("we couldnt update anything...",err)
+                next()
+            })
+    })
 
 
 module.exports = router
