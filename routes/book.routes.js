@@ -71,6 +71,20 @@ router.get("/books/:bookId",(req,res,next)=>{
                 next()
             })
     })
+    //delete
+    router.post("/books/:bookId/delete",(req,res,next)=>{
+
+        
+
+        Book.findByIdAndDelete(req.params.bookId)
+            .then((bookDetails)=>{
+                res.redirect(`/books`)
+            })
+            .catch((err)=>{
+                console.log("we couldnt delete anything...",err)
+                next()
+            })
+    })
 
 
 module.exports = router

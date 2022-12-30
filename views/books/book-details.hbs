@@ -1,8 +1,17 @@
-<h1>{{title}}</h1>
-<hr>
-<p>Written by: {{author}}</p>
-<p>Summary: {{description}}</p>
-<p>Rating: {{rating}}/10</p>
-<hr>
-<a href="/books">Back</a>
-<a href="/books/{{id}}/edit">update</a>
+<section>
+
+    <h1>{{title}}</h1>
+    <hr>
+    <p>Written by: {{author}}</p>
+    <p>Summary: {{description}}</p>
+    <p>Rating: {{rating}}/10</p>
+    <hr>
+    <p>
+        <form action="/books/{{id}}/delete" method="POST">
+            <button>Delete</button>
+        </form>
+    </p>
+    <a href="/books">Back</a>
+    <a href="/books/{{id}}/edit">update</a>
+
+</section>
