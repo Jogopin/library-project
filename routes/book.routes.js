@@ -5,6 +5,7 @@ const router =require("express").Router();
 router.get("/books",(req,res,next)=>{
     Book.find()
         .then(booksFromDB =>{
+            
             res.render("books/books-list",{booksFromDB})
         })
         .catch(err => {
@@ -47,8 +48,8 @@ router.get("/books/:bookId",(req,res,next)=>{
             next()
         })
     })
-    
-    router.get("/books/:bookId/edit",(req,res,next)=>{
+//READ:  
+router.get("/books/:bookId/edit",(req,res,next)=>{
         Book.findById(req.params.bookId)
             .then((bookDetails)=>{
                 res.render("books/book-edit",bookDetails)
@@ -58,7 +59,8 @@ router.get("/books/:bookId",(req,res,next)=>{
                 next()
             })
     })
-    router.post("/books/:bookId/edit",(req,res,next)=>{
+// 
+router.post("/books/:bookId/edit",(req,res,next)=>{
 
         const { title, author, description, rating } = req.body
 
@@ -71,8 +73,8 @@ router.get("/books/:bookId",(req,res,next)=>{
                 next()
             })
     })
-    //delete
-    router.post("/books/:bookId/delete",(req,res,next)=>{
+//delete
+router.post("/books/:bookId/delete",(req,res,next)=>{
 
         
 
