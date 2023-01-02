@@ -21,7 +21,18 @@ router.get("/books",(req,res,next)=>{
 
 //READ:Create book
 router.get("/books/create",(req,res,next)=>{
-    res.render("books/book-create")
+    
+    Author.find()
+        .then(authorsArr=>{
+            res.render("books/book-create", {authorsArr})
+
+        })
+
+        .catch(err=>{
+            console.log("something happened =>",err)
+            next(err);
+        })
+    
 })
 // 
 router.post("/books/create",(req,res,next)=>{
