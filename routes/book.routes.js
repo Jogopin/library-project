@@ -1,9 +1,14 @@
 const Book = require("../models/Book.model");
+const Author = require("../models/Author.model")
 
 const router =require("express").Router();
+
+
+
+
 //READ: List all books
 router.get("/books",(req,res,next)=>{
-    Book.find()
+    Book.find().populate("author")
         .then(booksFromDB =>{
             
             res.render("books/books-list",{booksFromDB})
@@ -38,6 +43,7 @@ router.post("/books/create",(req,res,next)=>{
 router.get("/books/:bookId",(req,res,next)=>{
     const bookId =req.params.bookId
     Book.findById(bookId)
+        .populate("author") // uses the object id from author and replace it with the corresponding object in the DB.
         .then(bookDetails=>{
             res.render("books/book-details",bookDetails)
             
