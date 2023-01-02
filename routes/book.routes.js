@@ -67,13 +67,29 @@ router.get("/books/:bookId",(req,res,next)=>{
     })
 //READ:  
 router.get("/books/:bookId/edit",(req,res,next)=>{
-        Book.findById(req.params.bookId)
-            .then((bookDetails)=>{
-                res.render("books/book-edit",bookDetails)
+    
+        // Book.findById(req.params.bookId)
+        //     .then((bookDetails)=>{
+        //         res.render("books/book-edit",bookDetails)
+        //     })
+        //     .catch((err)=>{
+        //         console.log("somethiing went wrong..",err)
+        //         next()
+        //     })
+        let authors
+        Author.find()
+            .then((authorsFromDB)=>{
+                authors = authorsFromDB
+                return Book.findById(req.params.bookId)
+
             })
-            .catch((err)=>{
-                console.log("somethiing went wrong..",err)
-                next()
+            .then((bookDetails)=>{
+                const data ={
+                    bookDetails:bookDetails,
+                    authors: authors
+
+                }
+                res.render("books/book-edit",data)
             })
     })
 // 
