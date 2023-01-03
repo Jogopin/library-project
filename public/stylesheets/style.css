@@ -3,10 +3,28 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00b7ff;
-}
+
 
 h1 {
   color: 15px;
+}
+nav{
+  text-align: center;
+ 
+  background-color:firebrick;
+  border: 1px solid black;
+  width: 70%;
+  height:2rem;
+  
+  padding-top:1rem;
+  
+}
+nav a{
+  font-weight: bold;
+  padding-left:1rem;
+  text-decoration: none;
+  color: white;
+  
+  
+  
 }
