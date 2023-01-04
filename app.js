@@ -28,7 +28,7 @@ const projectName = "library-project";
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
 app.use((req,res,next)=>{
-    app.locals.usserInSession = req.session.currentUser;
+    app.locals.userInSession = req.session.currentUser;
     next()
 })
 
