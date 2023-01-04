@@ -1,7 +1,9 @@
 const Book = require("../models/Book.model");
-const Author = require("../models/Author.model")
+const Author = require("../models/Author.model");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 const router =require("express").Router();
+
 
 
 
@@ -20,7 +22,9 @@ router.get("/books",(req,res,next)=>{
 })
 
 //READ:Create book
-router.get("/books/create",(req,res,next)=>{
+router.get("/books/create",isLoggedIn,(req,res,next)=>{
+
+// router.get("/books/create",(req,res,next)=>{
     
     Author.find()
         .then(authorsArr=>{
@@ -35,7 +39,7 @@ router.get("/books/create",(req,res,next)=>{
     
 })
 // 
-router.post("/books/create",(req,res,next)=>{
+router.post("/books/create",isLoggedIn,(req,res,next)=>{
 
     const { title, author, description, rating } = req.body;
 
