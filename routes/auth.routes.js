@@ -64,7 +64,7 @@ router.post("/login",(req,res,next)=>{
                  req.session.currentUser = userFromDB //currentUser could be banana
 
                 console.log(`login succesful!!!!!`)
-                res.render("users/user-profile",{userInSession: req.session.currentUser})
+                res.redirect("/user-profile")
             }else{
                 //login failed
                 res.render(`auth/login`,{errorMessage:`Incorrect credentials.`})
